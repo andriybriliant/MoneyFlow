@@ -1,5 +1,6 @@
 package com.andriibryliant.moneyflow.adapters
 
+import android.icu.text.DecimalFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -57,10 +58,10 @@ class TransactionsRecyclerViewAdapter :
 
             if (transaction.type == TransactionType.INCOME){
                 binding.transactionAmount.setTextColor(binding.transactionAmount.resources.getColor(R.color.greenText))
-                transactionAmountText = "+" + transaction.amount.toString() + transaction.currency
+                transactionAmountText = "+" + DecimalFormat("#.##").format(transaction.amount) + transaction.currency
             }else{
                 binding.transactionAmount.setTextColor(binding.transactionAmount.resources.getColor(R.color.redText))
-                transactionAmountText = transaction.amount.toString() + transaction.currency
+                transactionAmountText = DecimalFormat("#.##").format(transaction.amount) + transaction.currency
             }
 
             binding.transactionAmount.text = transactionAmountText

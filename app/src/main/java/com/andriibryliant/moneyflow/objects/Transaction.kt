@@ -3,7 +3,7 @@ package com.andriibryliant.moneyflow.objects
 data class Transaction(
     val name: String,
     val date: String,
-    val amount: Int,
+    val amount: Double,
     val type: TransactionType,
     val currency: String,
     val categoryID: String

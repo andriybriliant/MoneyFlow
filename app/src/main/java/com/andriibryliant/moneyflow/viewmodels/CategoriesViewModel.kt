@@ -7,15 +7,16 @@ import com.andriibryliant.moneyflow.R
 import com.andriibryliant.moneyflow.objects.Category
 
 class CategoriesViewModel : ViewModel() {
-    private val _categoriesList = MutableLiveData<List<Category>>()
-    var categoriesList: LiveData<List<Category>> = _categoriesList
+    private val _categories = MutableLiveData<List<Category>>()
+    var categoriesList: LiveData<List<Category>> = _categories
 
     fun fetchCategories(){
         //TODO
+        loadDummyData()
     }
 
     fun loadDummyData(){
-        _categoriesList.value = listOf(
+        _categories.value = listOf(
             Category("shop", "Shop", R.drawable.ic_cart_shopping_solid),
             Category("food", "Food", R.drawable.ic_pizza_slice_solid),
             Category("travel", "Travel", R.drawable.ic_plane_solid)

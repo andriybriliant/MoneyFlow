@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andriibryliant.moneyflow.R
+import com.andriibryliant.moneyflow.adapters.AccountsViewPagerAdapter
 import com.andriibryliant.moneyflow.adapters.TransactionsRecyclerViewAdapter
 
 import com.andriibryliant.moneyflow.databinding.FragmentHomeBinding
 import com.andriibryliant.moneyflow.objects.TransactionListItem
 import com.andriibryliant.moneyflow.utils.Animations
+import com.andriibryliant.moneyflow.viewmodels.AccountsViewModel
 import com.andriibryliant.moneyflow.viewmodels.CategoriesViewModel
 import com.andriibryliant.moneyflow.viewmodels.MenuViewModel
 import com.andriibryliant.moneyflow.viewmodels.TransactionsViewModel
@@ -18,9 +20,11 @@ import com.andriibryliant.moneyflow.viewmodels.TransactionsViewModel
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
     private var lastSelected: TransactionListItem? = null
+    private val accountsViewPagerAdapter = AccountsViewPagerAdapter()
     private val transactionsRecyclerViewAdapter = TransactionsRecyclerViewAdapter()
-    private val menuViewModel: MenuViewModel<TransactionListItem> by viewModels{ MenuViewModel.MenuViewModelFactory<TransactionListItem>(
+    private val menuViewModel: MenuViewModel<TransactionListItem> by viewModels{ MenuViewModel.MenuViewModelFactory(
         TransactionListItem.ALL) }
+    private val accountsViewModel: AccountsViewModel by viewModels()
     private val transactionsViewModel: TransactionsViewModel by viewModels()
     private val categoriesViewModel: CategoriesViewModel by viewModels()
 
@@ -29,6 +33,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
         binding.transactionsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.transactionsRecyclerView.adapter = transactionsRecyclerViewAdapter
+        binding.accountsViewPager.adapter = accountsViewPagerAdapter
 
         binding.allText.setOnClickListener {
             menuViewModel.selectMenuItem(TransactionListItem.ALL)
@@ -47,6 +52,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             updateMenuUI(item)
         }
 
+        accountsViewModel.accountList.observe(viewLifecycleOwner){ it ->
+            accountsViewPagerAdapter.setAccounts(it)
+        }
+
         transactionsViewModel.transactionList.observe(viewLifecycleOwner){ it ->
             transactionsRecyclerViewAdapter.setTransactions(it)
         }
@@ -55,8 +64,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             transactionsRecyclerViewAdapter.setCategories(it)
         }
 
-        categoriesViewModel.loadDummyData()
-        transactionsViewModel.loadDummyData()
+        accountsViewModel.fetchAccounts()
+        categoriesViewModel.fetchCategories()
+        transactionsViewModel.fetchTransactions()
     }
 
     private fun updateMenuUI(item: TransactionListItem){
