@@ -12,5 +12,7 @@ class SavingsFragment : Fragment(R.layout.fragment_savings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSavingsBinding.bind(view)
+
+
     }
 }

@@ -5,6 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.andriibryliant.moneyflow.R
 import com.andriibryliant.moneyflow.adapters.AccountsViewPagerAdapter
 import com.andriibryliant.moneyflow.adapters.TransactionsRecyclerViewAdapter

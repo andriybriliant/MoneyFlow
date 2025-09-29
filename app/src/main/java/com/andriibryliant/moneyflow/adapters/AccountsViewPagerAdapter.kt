@@ -3,6 +3,7 @@ package com.andriibryliant.moneyflow.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.andriibryliant.moneyflow.R
 import com.andriibryliant.moneyflow.databinding.ItemAccountBinding
 import com.andriibryliant.moneyflow.databinding.ItemAddAccountBinding
 import com.andriibryliant.moneyflow.objects.Account
@@ -32,6 +33,11 @@ class AccountsViewPagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
                 else -> DecimalFormat("0.00").format(account.amount)
             }
             binding.currencyText.text = account.currency
+
+            when{
+                account.iconRes != null -> binding.accountIcon.setImageResource(account.iconRes)
+                else -> binding.accountIcon.setImageResource(R.drawable.ic_wallet_solid)
+            }
         }
     }
     class AddAccountViewHolder(val binding: ItemAddAccountBinding) : RecyclerView.ViewHolder(binding.root)

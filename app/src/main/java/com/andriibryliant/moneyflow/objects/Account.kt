@@ -5,7 +5,8 @@ data class Account(
     val name: String,
     val amount: Double,
     val type: AccountType,
-    val currency: String
+    val currency: String,
+    val iconRes: Int?
 )
 
 enum class AccountType{
