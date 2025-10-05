@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="5dp">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="@dimen/containerPadding"
+        android:layout_marginEnd="@dimen/containerPadding"
+        android:background="@drawable/bg_transactions_recycler_view"
+        android:clickable="true"
+        android:clipToOutline="true"
+        android:elevation="5dp"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:maxHeight="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/jarNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:elevation="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Laptop Savings Jar"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toTopOf="@+id/background" />
+
+    <TextView
+        android:id="@+id/jarFrequencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:elevation="5dp"
+        android:text="150$ Every 1 week"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/jarNameText" />
+
+    <ImageButton
+        android:id="@+id/addButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_green_circle"
+        android:clipToOutline="true"
+        android:elevation="5dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingHorizontal="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toStartOf="@+id/subtractButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/background"
+        app:srcCompat="@drawable/ic_plus_solid_full" />
+
+    <ImageButton
+        android:id="@+id/subtractButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_red_circle"
+        android:clipToOutline="true"
+        android:elevation="5dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingHorizontal="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toStartOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addButton"
+        app:srcCompat="@drawable/ic_minus_solid_full" />
+
+    <TextView
+        android:id="@+id/amountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="750"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toStartOf="@+id/currencyText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/background"
+        app:layout_constraintTop_toTopOf="@+id/background" />
+
+    <TextView
+        android:id="@+id/currencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="$"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/amountText"
+        app:layout_constraintEnd_toStartOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/amountText"
+        app:layout_constraintTop_toTopOf="@+id/amountText" />
+
+    <ProgressBar
+        android:id="@+id/jarProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="290dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:elevation="5dp"
+        android:paddingHorizontal="0dp"
+        android:paddingVertical="0dp"
+        android:progress="70"
+        android:progressDrawable="@drawable/bg_custom_progress_bar"
+        app:layout_constraintBottom_toBottomOf="@+id/amountText"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/goalText" />
+
+    <TextView
+        android:id="@+id/goalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="5dp"
+        android:text="1500$"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/jarProgressBar"
+        app:layout_constraintEnd_toEndOf="@+id/jarProgressBar"
+        app:layout_constraintTop_toTopOf="@+id/subtractButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

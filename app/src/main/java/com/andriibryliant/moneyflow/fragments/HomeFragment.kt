@@ -1,5 +1,6 @@
 package com.andriibryliant.moneyflow.fragments
 
+import android.animation.LayoutTransition
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -37,6 +38,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.transactionsRecyclerView.adapter = transactionsRecyclerViewAdapter
         binding.accountsViewPager.adapter = accountsViewPagerAdapter
 
+        binding.main.layoutTransition = LayoutTransition()
+
         binding.allText.setOnClickListener {
             menuViewModel.selectMenuItem(TransactionListItem.ALL)
             transactionsViewModel.selectFilter(TransactionListItem.ALL)
@@ -66,9 +69,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             transactionsRecyclerViewAdapter.setCategories(it)
         }
 
-        accountsViewModel.fetchAccounts()
-        categoriesViewModel.fetchCategories()
-        transactionsViewModel.fetchTransactions()
+        binding.accountsViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                if(position == accountsViewModel.accountList.value?.size){
+                    showAddAccountMessage()
+                }
+                else{
+                    hideAddAccountMessage()
+                }
+            }
+        })
     }
 
     private fun updateMenuUI(item: TransactionListItem){
@@ -76,7 +86,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             animateMenuItem(item)
             lastSelected = item
         }else{
-            setMenuSelected(item)
+            setMenuSelectedUI(item)
         }
     }
 
@@ -98,7 +108,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             selectedView.startAnimation(showAnimation)
     }
 
-    private fun setMenuSelected(item: TransactionListItem){
+    private fun setMenuSelectedUI(item: TransactionListItem){
         val selectedView = when(item){
             TransactionListItem.ALL -> binding.allSelected
             TransactionListItem.INCOME -> binding.incomeSelected
@@ -113,4 +123,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         selectedView.visibility = View.VISIBLE
     }
 
+    private fun showAddAccountMessage(){
+        binding.noAccountMessage.visibility = View.VISIBLE
+        binding.transactionTypeMenu.visibility = View.GONE
+        binding.transactionsRecyclerView.visibility = View.GONE
+    }
+
+    private fun hideAddAccountMessage(){
+        binding.noAccountMessage.visibility = View.GONE
+        binding.transactionTypeMenu.visibility = View.VISIBLE
+        binding.transactionsRecyclerView.visibility = View.VISIBLE
+    }
 }

@@ -10,6 +10,10 @@ class CategoriesViewModel : ViewModel() {
     private val _categories = MutableLiveData<List<Category>>()
     var categoriesList: LiveData<List<Category>> = _categories
 
+    init{
+        fetchCategories()
+    }
+
     fun fetchCategories(){
         //TODO
         loadDummyData()

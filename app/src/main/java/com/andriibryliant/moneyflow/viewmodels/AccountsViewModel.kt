@@ -11,6 +11,10 @@ class AccountsViewModel : ViewModel() {
     private var _accounts = MutableLiveData<List<Account>>()
     val accountList: LiveData<List<Account>> = _accounts
 
+    init{
+        fetchAccounts()
+    }
+
     fun fetchAccounts(){
         loadDummyData()
     }

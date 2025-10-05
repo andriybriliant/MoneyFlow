@@ -14,6 +14,10 @@ class TransactionsViewModel : ViewModel() {
 
     private var currentFilter = TransactionListItem.ALL
 
+    init {
+        fetchTransactions()
+    }
+
     fun fetchTransactions(){
         //TODO
         loadDummyData()
