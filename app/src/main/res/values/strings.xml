@@ -10,7 +10,7 @@
     <string name="no_account_message">Oops... There is no account on this page, but you can add one by pressings the \"plus\" button above</string>
     <string name="add_new_jar">Add New Jar</string>
     <string name="goal">Goal</string>
-    <string name="language">Language</string>
+    <string name="language">Language:</string>
     <string name="account_settings">Account Settings</string>
     <string name="log_out">Log Out</string>
     <string name="title">Title</string>
@@ -28,4 +28,6 @@
     <string name="forever">Forever</string>
     <string name="until">Until</string>
     <string name="account">Account</string>
+    <string name="name">Name</string>
+    <string name="add_jar">Add Jar</string>
 </resources>
